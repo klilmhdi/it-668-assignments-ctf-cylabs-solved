@@ -1,0 +1,14 @@
+Challenge: Matryoshka Doll
+
+True file type: PNG image (594 x 1104), despite the .jpg extension.
+Original MD5: 1b06594ad8610fea397cff63dfb51410
+Flag: academy{ZNTyvSDXRNO1d0xCkBRMhAoiafpCTvgW}
+
+Discovery:
+binwalk identified an embedded ZIP archive at offset 272492 (0x4286C) in the original PNG file. Further embedded ZIP archives were found at offsets 187707 (0x2DD3B) in 2_c.jpg and 123606 (0x1E2D6) in 3_c.jpg. The final embedded ZIP archive was found at offset 79578 (0x136DA) in 4_c.jpg.
+
+Confirmation:
+7z extracted each nested archive into a separate layer directory. The final archive contained flag.txt, whose contents were verified using cat.
+
+Method:
+The file extension did not match the actual PNG file signature. Binwalk detected ZIP archives appended to the PNG images, and 7z extracted the nested files until flag.txt was recovered.

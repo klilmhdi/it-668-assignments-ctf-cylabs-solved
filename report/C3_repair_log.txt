@@ -1,0 +1,31 @@
+Challenge C3: endianness-v2 — Repair Log
+
+1. Original Evidence
+Original file: originals/challengefile
+Original MD5 before analysis: 5b978f82f606dde79a3d448dfb918812
+Original MD5 after analysis: 5b978f82f606dde79a3d448dfb918812
+Integrity: The matching MD5 hashes confirm that the original file remained unchanged.
+Initial identification: The file command identified the original as generic data.
+
+2. Repair Procedure
+A working copy was created to preserve the original evidence.
+The initial bytes were examined and found to be in an incorrect byte order.
+Reversing the bytes within each consecutive 4-byte group restored the JPEG/JFIF header.
+The repaired file was saved as C3/challengefile_repaired.jpg.
+
+3. Verification
+The file command and ExifTool confirmed that the repaired file is a JPEG/JFIF image, 300 x 150 pixels, with three color components.
+The grep search and binwalk scan did not reveal the flag.
+Opening and inspecting the repaired image revealed the flag visually.
+
+4. Finding
+Flag: academy{cert!f1Ed_iNd!4n_s0rrY_3nDian_30578be3}
+
+Conclusion:
+The file's byte order was incorrect. Reversing each 4-byte group restored a valid JPEG image and enabled visual recovery of the flag.
+
+5. Evidence Required
+- Original file identification and initial MD5.
+- Repair command and repaired file identification.
+- Repaired image showing the flag.
+- Final original MD5 confirming that the original evidence remained unchanged.
